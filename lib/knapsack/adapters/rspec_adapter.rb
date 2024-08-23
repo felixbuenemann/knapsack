@@ -6,7 +6,7 @@ module Knapsack
 
       def bind_time_tracker
         ::RSpec.configure do |config|
-          config.prepend_before(:context) do
+          config.prepend_before(:all) do
             Knapsack.tracker.start_timer
           end
 
@@ -20,7 +20,7 @@ module Knapsack
             Knapsack.tracker.test_path = RSpecAdapter.test_path(current_example_group)
           end
 
-          config.append_after(:context) do
+          config.append_after(:all) do
             Knapsack.tracker.stop_timer
           end
 
